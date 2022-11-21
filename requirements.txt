@@ -12,3 +12,5 @@ pytz
 beautifulsoup4==4.11.1
 lxml==4.9.1
 chromedriver-binary==106.*
+dj-database-url
+django-heroku
