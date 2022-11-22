@@ -27,7 +27,7 @@ env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if env('DEBUG') == 'TRUE':
+if env('DEBUG') == 'True':
     DEBUG = True
 else:
     DEBUG = False
@@ -76,7 +76,7 @@ ROOT_URLCONF = 'tuspro9.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
