@@ -18,3 +18,4 @@ gunicorn
 whitenoise
 django-storages
 boto3
+webdriver_manager
