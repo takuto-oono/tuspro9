@@ -24,6 +24,7 @@ def get_time_visiting_all_attractions(request: HttpRequest) -> JsonResponse:
             'time': object.time,
             'is_visit_all_attractions': object.is_visit_all_attractions,
             'date': date,
+            'route': [1, 2],
         })
     except TimeVisitingAllAttractions.DoesNotExist:
         #ここでアルゴリズムを実行したい
@@ -32,10 +33,12 @@ def get_time_visiting_all_attractions(request: HttpRequest) -> JsonResponse:
             date=date,
             time=1000,
             is_visit_all_attractions=True,
+            route=[1, 2, 3],
         )   
         return JsonResponse({
             'status': 200,
             'time': 1000,
             'is_visit_all_attractions': True,
             'date': date,
+            'route': [1, 2, 3],
         })

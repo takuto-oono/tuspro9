@@ -13,6 +13,7 @@ async function getTimeVisitingAllAttractions(index) {
 			res.is_visit_all_attractions;
 		document.getElementById("time-visit-all-" + index.toString()).innerHTML =
 			res.time;
+		console.log(res.route);
 	} else {
         document.getElementById("date-" + index.toString()).innerHTML = 'no data';
 		document.getElementById("is-visit-all-" + index.toString()).innerHTML =

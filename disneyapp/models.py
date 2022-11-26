@@ -10,5 +10,5 @@ class TimeVisitingAllAttractions(models.Model):
     route = ArrayField(models.IntegerField())
     
     def __str__(self):
-        return self.date
+        return str(self.date)
 
