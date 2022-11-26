@@ -1,14 +1,14 @@
 import copy
 from functools import reduce
 import numpy as np
-from typing import Tuple
-import alg_wada
+from typing import Tuple, List
 
 
 
-def wrapper_alg(fc, source_dist: str, source_wait: str, tspts_flg) -> Tuple[list[int], int]:
-    dist = shape_dist(source_dist)
-    wait = shape_wait(source_wait)
+# def wrapper_alg(fc, source_dist: str, source_wait: str, tspts_flg) -> Tuple[list[int], int]:
+def wrapper_alg(fc, dist: List[List[int]], wait: List[List[int]], tspts_flg) -> Tuple[list[int], int]:
+    # dist = shape_dist(source_dist)
+    # wait = shape_wait(source_wait)
     wait = [[wait[i][j] for i in range(len(wait))] for j in range(len(wait[0]))]
     assert len(set((len(dist), len(wait), *(len(dist[i]) for i in range(len(dist)))))) == 1, 'distの行数、waitの行数、distの列数が異なる'
 
