@@ -8,6 +8,7 @@ sys.path.append(os.path.join(BASE_DIR / 's3'))
 from get_csv_file import get_csv_file
 import csv
 from typing import List
+import copy
 
 
 
@@ -47,10 +48,15 @@ def create_expected_wait_time_csv_file(year: int, month: int, day: int) -> List[
                 expected_wait_time_list[i][j] = -1
             else:
                 expected_wait_time_list[i][j] //= collecting_data_num[i][j]
-                
+    print(expected_wait_time_list)
+    print('---------------------------------------------------------------')
+    write_list = copy.deepcopy(expected_wait_time_list)
+    print(expected_wait_time_list)
+
     with open('expected_wait_time_csv_files/expected_wait_time_data_' + base_day.strftime('%Y%m%d') + '.csv', 'w') as file:
         writer = csv.writer(file, lineterminator='\n')
-        writer.writerows(expected_wait_time_list)
+        writer.writerows(write_list)
+    print(expected_wait_time_list)
     
     return expected_wait_time_list
     
@@ -59,8 +65,8 @@ def create_expected_wait_time_csv_file(year: int, month: int, day: int) -> List[
     
 if __name__ == '__main__':
     today = datetime.date.today()
-    for i in range(7):
-        date = today + datetime.timedelta(days=i)
-        create_expected_wait_time_csv_file(date.year, date.month, date.day)
-        
+    # for i in range(7):
+    #     date = today + datetime.timedelta(days=i)
+    #     create_expected_wait_time_csv_file(date.year, date.month, date.day)
+    create_expected_wait_time_csv_file(2022, 12, 2)        
     

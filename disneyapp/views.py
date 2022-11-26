@@ -1,9 +1,10 @@
+
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse, Http404
 from django.views.decorators.http import require_GET
 from .models import TimeVisitingAllAttractions
 import datetime
-# Create your views here.
+from .algorithm.alg_wada_main import alg_main
 
 
 def index(request):
@@ -17,28 +18,26 @@ def get_time_visiting_all_attractions(request: HttpRequest) -> JsonResponse:
         raise Http404
     date = datetime.date.today() + datetime.timedelta(days=int(index))
     try:
-
         object = TimeVisitingAllAttractions.objects.get(date=date)
         return JsonResponse({
             'status': 200,
             'time': object.time,
             'is_visit_all_attractions': object.is_visit_all_attractions,
             'date': date,
-            'route': [1, 2],
+            'route': object.route,
         })
     except TimeVisitingAllAttractions.DoesNotExist:
-        #ここでアルゴリズムを実行したい
-        
+        route, time = alg_main(date)
         TimeVisitingAllAttractions.objects.create(
             date=date,
-            time=1000,
-            is_visit_all_attractions=True,
-            route=[1, 2, 3],
-        )   
+            time=time,
+            is_visit_all_attractions=time <= 720,
+            route=route,
+        )
         return JsonResponse({
             'status': 200,
-            'time': 1000,
-            'is_visit_all_attractions': True,
+            'time': time,
+            'is_visit_all_attractions': time <= 720,
             'date': date,
-            'route': [1, 2, 3],
+            'route': route,
         })
