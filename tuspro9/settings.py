@@ -32,7 +32,7 @@ if env('DEBUG') == 'True':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['https://tuspro9.herokuapp.com/', 'localhost']
+ALLOWED_HOSTS = ['https://tuspro9.herokuapp.com/', 'www.https://tuspro9.herokuapp.com/'  'localhost']
 
 
 # Application definition
