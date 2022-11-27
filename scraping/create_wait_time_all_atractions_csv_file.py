@@ -56,5 +56,4 @@ def create_wait_time_all_attractions_csv_file(year: int, month: int, day:int) ->
 
 
 if __name__ == '__main__':
-    for i in range(7):
-        get_wait_time_all_atractions(2022, 10, 31 - i)
+    create_wait_time_all_attractions_csv_file(2022, 11, 26)
