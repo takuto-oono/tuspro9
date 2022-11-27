@@ -34,6 +34,7 @@ else:
 
 ALLOWED_HOSTS = ['https://tuspro9.herokuapp.com/', 'www.https://tuspro9.herokuapp.com/'  'localhost']
 
+CSRF_TRUSTED_ORIGINS = ['https://tuspro9.herokuapp.com/', 'www.https://tuspro9.herokuapp.com/']
 
 # Application definition
 
