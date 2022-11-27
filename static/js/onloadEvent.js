@@ -3,7 +3,6 @@ function onloadEvent() {
 	// for (let i = 0; i < 7; i++) {
 	// 	getTimeVisitingAllAttractions(i);
 	// }
-	// onclickDate(0);
 
 	(async () => {
 		const p0 = getTimeVisitingAllAttractions(0);
@@ -15,6 +14,7 @@ function onloadEvent() {
 		const p6 = getTimeVisitingAllAttractions(6);
 		await Promise.all([p0, p1, p2, p3, p4, p5, p6]);
 	})();
+	onclickDate(0);
 }
 
 window.onload = onloadEvent;
