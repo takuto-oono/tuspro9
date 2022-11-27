@@ -1,17 +1,16 @@
 import copy
 from functools import reduce
-from typing import Tuple
-
-import alg_wada
+from typing import Tuple, List
 
 
-
-# def wrapper_alg(fc, source_dist: str, source_wait: str, tspts_flg) -> Tuple[list[int], int]:
+# def wrapper_alg(fc, source_dist: str, source_wait: str, tspts_flg) -> Tuple[a[int], int]:
 def wrapper_alg(fc, dist: List[List[int]], wait: List[List[int]], tspts_flg) -> Tuple[list[int], int]:
     # dist = shape_dist(source_dist)
     # wait = shape_wait(source_wait)
-    wait = [[wait[i][j] for i in range(len(wait))] for j in range(len(wait[0]))]
-    assert len(set((len(dist), len(wait), *(len(dist[i]) for i in range(len(dist)))))) == 1, 'distの行数、waitの行数、distの列数が異なる'
+    wait = [[wait[i][j] for i in range(len(wait))]
+            for j in range(len(wait[0]))]
+    assert len(set((len(dist), len(
+        wait), *(len(dist[i]) for i in range(len(dist)))))) == 1, 'distの行数、waitの行数、distの列数が異なる'
 
     no_dist_list = []
     for i in range(len(dist)):
@@ -37,7 +36,8 @@ def wrapper_alg(fc, dist: List[List[int]], wait: List[List[int]], tspts_flg) -> 
     wait = [wait[i] for i in in_list]
     assert -1 not in reduce(lambda accum, x: accum + x, dist, []), 'distに-1が存在'
     assert [-1 for _ in range(len(wait[0]))] not in wait, 'waitに-1のみの行が存在'
-    assert dist == [[dist[i][j] for i in range(len(dist))] for j in range(len(dist))], 'distが対称行列でない'
+    assert dist == [[dist[i][j] for i in range(
+        len(dist))] for j in range(len(dist))], 'distが対称行列でない'
 
     # m -> minに80m/minで変換後、小数点以下切り上げ
     dist = [[(x+79) // 80 for x in l] for l in dist]
@@ -74,8 +74,10 @@ def wrapper_tspts(fc, dist: list[list[int]], wait: list[list[int]]) -> Tuple[lis
     wait_2 = [[] for _ in range(n)]
     new_wait_2 = [[] for _ in range(n)]
     for i in range(n):
-        wait_2[i] = reduce(lambda accum, x: accum + [x for _ in range(15)], wait[i], [])
-        new_wait_2[i] = reduce(lambda accum, x: accum + [x for _ in range(15)], new_wait[i], [])
+        wait_2[i] = reduce(lambda accum, x: accum +
+                           [x for _ in range(15)], wait[i], [])
+        new_wait_2[i] = reduce(lambda accum, x: accum +
+                               [x for _ in range(15)], new_wait[i], [])
 
     route, time = fc.fit(n, dist, new_wait_2)
 
@@ -85,7 +87,7 @@ def wrapper_tspts(fc, dist: list[list[int]], wait: list[list[int]]) -> Tuple[lis
         if wait_2[route[i]][now_time] == -1:
             raise AssertionError('-1を通っている')
         now_time += new_wait_2[route[i]][now_time]
-        now_time += dist[route[i]][route[(i+1)%n]]
+        now_time += dist[route[i]][route[(i+1) % n]]
 
     print(route, time)
 
@@ -93,7 +95,7 @@ def wrapper_tspts(fc, dist: list[list[int]], wait: list[list[int]]) -> Tuple[lis
     if time > len(new_wait_2[0]) // 2:
         print("閉園時間を過ぎている")
         time *= -1
-    
+
     return (route, time)
 
 
@@ -122,7 +124,8 @@ def wrapper_tsp(fc, dist: list[list[int]], wait: list[list[int]]) -> Tuple[list[
     # 15倍にする
     new_wait_2 = [[] for _ in range(n)]
     for i in range(n):
-        new_wait_2[i] = reduce(lambda accum, x: accum + [x for _ in range(15)], new_wait[i], [])
+        new_wait_2[i] = reduce(lambda accum, x: accum +
+                               [x for _ in range(15)], new_wait[i], [])
 
     # 巡回セールスマン問題のアルゴリズム
     route = fc.fit(n, dist)
@@ -135,10 +138,10 @@ def wrapper_tsp(fc, dist: list[list[int]], wait: list[list[int]]) -> Tuple[list[
         time = 0
         rev_time = 0
         for i in range(n):
-            time += new_wait_2[route[(s+i)%n]][time]
-            time += dist[route[(s+i)%n]][route[(s+i+1)%n]]
-            rev_time += new_wait_2[rev_route[(s+i)%n]][rev_time]
-            rev_time += dist[rev_route[(s+i)%n]][rev_route[(s+i+1)%n]]
+            time += new_wait_2[route[(s+i) % n]][time]
+            time += dist[route[(s+i) % n]][route[(s+i+1) % n]]
+            rev_time += new_wait_2[rev_route[(s+i) % n]][rev_time]
+            rev_time += dist[rev_route[(s+i) % n]][rev_route[(s+i+1) % n]]
         if time < mi_time:
             mi_route = route[s:] + route[:s]
             mi_time = time
