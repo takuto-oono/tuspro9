@@ -1,13 +1,10 @@
+from expect_wait_time_data.create_expected_wait_time_csv_file import create_expected_wait_time_csv_file
 from typing import List, Tuple
 import datetime
 from .alg_util import wrapper_alg
 from .alg_wada import IPSO
 from pathlib import Path
-import sys
-import os
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-sys.path.append(os.path.join(BASE_DIR / 'expect_wait_time_data'))
-from create_expected_wait_time_csv_file import create_expected_wait_time_csv_file
 
 
 def shape_dist(source: str) -> list[list[int]]:
