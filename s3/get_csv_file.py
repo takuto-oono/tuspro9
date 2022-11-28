@@ -1,7 +1,7 @@
 from typing import List
 import boto3
 import csv
-import get_s3_bucket_name
+from s3.get_s3_bucket_name import get_s3_bucket_name
 
 
 def get_csv_file(file_path: str) -> List[List[int]]:
