@@ -5,7 +5,7 @@ from .alg_util import wrapper_alg
 from .alg_wada import IPSO
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-
+import os
 
 def shape_dist(source: str) -> list[list[int]]:
     dist = []
