@@ -7,3 +7,4 @@ RUN apt install -y firefox-esr
 ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 ADD . /code/
+ENV PYTHONPATH "${PYTHONPATH}:/code"

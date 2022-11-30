@@ -1,8 +1,11 @@
 from pathlib import Path
 import sys
 import os
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-sys.path.append(os.path.join(BASE_DIR, ''))
+# BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+# print(os.path.join(BASE_DIR, ''))
+# # sys.path.append(os.path.join(BASE_DIR, ''))
+# for path in sys.path:
+#     print(path)
 import copy
 from typing import List
 import csv
