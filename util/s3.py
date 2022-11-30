@@ -18,3 +18,17 @@ def get_csv_file(file_path: str) -> List[List[int]]:
     except:
         print('not find {}'.format(file_path))
         return [[]]
+
+
+def upload_file(local_file_path: str, file_path: str) -> None:
+    env = ENV()
+    session = boto3.Session(
+    aws_access_key_id=env.get_aws_access_key_id(),
+    aws_secret_access_key=env.get_aws_secret_access_key(),
+    )
+    s3 = session.resource('s3')
+    s3.meta.client.upload_file(Filename=local_file_path, Bucket=env.get_aws_storage_bucket_name(), Key='csv_data/{}'.format(file_path))
+
+if __name__ == '__main__':
+    # upload_file('../attractions_distances_data.csv', 'attractions_dis.csv')
+    print(get_csv_file('attractions_dis.csv'))

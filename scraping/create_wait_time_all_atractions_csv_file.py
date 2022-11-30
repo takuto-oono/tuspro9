@@ -2,14 +2,16 @@ from typing import List
 from make_driver import make_driver
 import csv
 import time
+from util import s3
 
-def create_wait_time_all_attractions_csv_file(year: int, month: int, day:int) -> List[List[int]]:
+
+def create_wait_time_all_attractions_csv_file(year: int, month: int, day: int) -> List[List[int]]:
     def create_xpath_by_a(index: int) -> str:
         return '/html/body/div[3]/div[1]/article/table[2]/tbody/tr[' + str(index + 2) + ']/td[2]/a'
 
     def create_xpath_by_td(index: int) -> str:
         return '/html/body/div[3]/div[1]/article/table[2]/tbody/tr[' + str(index + 2) + ']/td[1]'
-    
+
     driver = make_driver()
     m = str(month)
     d = str(day)
@@ -52,9 +54,8 @@ def create_wait_time_all_attractions_csv_file(year: int, month: int, day:int) ->
     print(len(wait_time_list))
     print(len(wait_time_list[0]))
     driver.close()
+    file_name = 'wait_time_csv_files/wait_time_data_' + date_str + '.csv'
+
+    s3.upload_file('./wait_time_csv_files/wait_time_data_{}.csv'.format(date_str),
+                   'expected_wait_time_data/' + file_name)
     return wait_time_list
-
-
-if __name__ == '__main__':
-    create_wait_time_all_attractions_csv_file(2022, 11, 28)
-    create_wait_time_all_attractions_csv_file(2022, 11, 29)
