@@ -54,8 +54,12 @@ def create_wait_time_all_attractions_csv_file(year: int, month: int, day: int) -
     print(len(wait_time_list))
     print(len(wait_time_list[0]))
     driver.close()
-    file_name = 'wait_time_csv_files/wait_time_data_' + date_str + '.csv'
+    file_name = 'wait_time_data_' + date_str + '.csv'
 
     s3.upload_file('./wait_time_csv_files/wait_time_data_{}.csv'.format(date_str),
-                   'expected_wait_time_data/' + file_name)
+                   'wait_time_data/' + file_name)
     return wait_time_list
+
+
+if __name__ == '__main__':
+    create_wait_time_all_attractions_csv_file(2022, 10, 24)
