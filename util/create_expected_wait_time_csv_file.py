@@ -1,25 +1,11 @@
 from pathlib import Path
 import sys
 import os
-# BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-# print(os.path.join(BASE_DIR, ''))
-# # sys.path.append(os.path.join(BASE_DIR, ''))
-# for path in sys.path:
-#     print(path)
 import copy
 from typing import List
 import csv
-from s3.get_csv_file import get_csv_file
 import datetime
-
-
-def shape_dist(source: str) -> list[list[int]]:
-    dist = []
-    with open(source, 'r') as f:
-        dist = f.read().split('\n')
-    dist = [x.split(',') for x in dist][:-1]
-    dist = [[int(x) for x in l] for l in dist]
-    return dist
+from util import s3
 
 
 def create_expected_wait_time_csv_file(year: int, month: int, day: int) -> List[List[int]]:
@@ -39,9 +25,9 @@ def create_expected_wait_time_csv_file(year: int, month: int, day: int) -> List[
         print(sample_date)
 
         # amazon s3からフィアルを取得する
-        # wait_time_data = get_csv_file(
-        #     s3_base_path.format(sample_date.strftime('%Y%m%d')))
-        wait_time_data = shape_dist('../scraping/wait_time_csv_files/wait_time_data_{}.csv'.format(sample_date.strftime('%Y%m%d')))
+        wait_time_data = s3.get_csv_file(
+            'wait_time_data/wait_time_data_{}.csv'.format(sample_date.strftime('%Y%m%d')))
+
         # s3からのファイル取得が失敗している場合の処理
         if wait_time_data == [[]]:
             continue
@@ -59,16 +45,12 @@ def create_expected_wait_time_csv_file(year: int, month: int, day: int) -> List[
                 expected_wait_time_list[i][j] = -1
             else:
                 expected_wait_time_list[i][j] //= collecting_data_num[i][j]
-    print(expected_wait_time_list)
-    print('---------------------------------------------------------------')
     write_list = copy.deepcopy(expected_wait_time_list)
-    print(expected_wait_time_list)
-
-    with open('expected_wait_time_csv_files/expected_wait_time_data_' + base_day.strftime('%Y%m%d') + '.csv', 'w') as file:
+    with open('../data/expect_wait_time_data/expected_wait_time_data_' + base_day.strftime('%Y%m%d') + '.csv', 'w') as file:
         writer = csv.writer(file, lineterminator='\n')
         writer.writerows(write_list)
-    print(expected_wait_time_list)
-
+    s3.upload_file('../data/expect_wait_time_data/expected_wait_time_data_{}.csv'.format(base_day.strftime('%Y%m%d')),
+                   'expected_wait_time_data/expected_wait_time_data_{}.csv'.format(base_day.strftime('%Y%m%d')))
     return expected_wait_time_list
 
 
@@ -77,4 +59,6 @@ if __name__ == '__main__':
     # for i in range(7):
     #     date = today + datetime.timedelta(days=i)
     #     create_expected_wait_time_csv_file(date.year, date.month, date.day)
-    create_expected_wait_time_csv_file(2022, 12, 6)
+    create_expected_wait_time_csv_file(2022, 12, 5)
+    create_expected_wait_time_csv_file(2022, 12, 2)
+    create_expected_wait_time_csv_file(2022, 12, 3)

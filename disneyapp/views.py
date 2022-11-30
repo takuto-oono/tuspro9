@@ -4,7 +4,7 @@ from django.http import HttpRequest, JsonResponse, Http404
 from django.views.decorators.http import require_GET
 from .models import TimeVisitingAllAttractions
 import datetime
-from .algorithm.alg_wada_main import alg_main
+from algorithm.alg_wada_main import alg_main
 
 
 def index(request):
