@@ -5,9 +5,10 @@ import time
 
 
 if __name__ == '__main__':
-    today = datetime.date.today()
+    date = datetime.date.today() - datetime.timedelta(days=1)
     create_wait_time_all_attractions_csv_file(
-        year=today.year, month=today.month, day=today.day)
+        year=date.year, month=date.month, day=date.day)
     time.sleep(5)
+    date = datetime.date.today() + datetime.timedelta(days=6)
     create_expected_wait_time_csv_file(
-        year=today.year, month=today.month, day=today.day)
+        year=date.year, month=date.month, day=date.day)

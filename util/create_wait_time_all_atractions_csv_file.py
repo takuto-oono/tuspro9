@@ -52,8 +52,7 @@ def create_wait_time_all_attractions_csv_file(year: int, month: int, day: int) -
             wait_times += driver.find_element(
                 by='xpath', value=xpath_list[j] + '[' + str(i + 2) + ']').text.split()[1:]
         wait_time_list.append(wait_times)
-        print(wait_times)
-
+    print(wait_time_list)
     for i in range(len(wait_time_list)):
         for j in range(len(wait_time_list[i])):
             try:
@@ -61,7 +60,7 @@ def create_wait_time_all_attractions_csv_file(year: int, month: int, day: int) -
             except:
                 wait_time_list[i][j] = -1
 
-    with open('../data/wait_time_csv_files/wait_time_data_' + date_str + '.csv', 'w') as file:
+    with open('./data/wait_time_csv_files/wait_time_data_' + date_str + '.csv', 'w') as file:
         writer = csv.writer(file, lineterminator='\n')
         writer.writerows(wait_time_list)
     print(len(wait_time_list))
@@ -69,7 +68,7 @@ def create_wait_time_all_attractions_csv_file(year: int, month: int, day: int) -
     driver.close()
     file_name = 'wait_time_data_' + date_str + '.csv'
 
-    s3.upload_file('../data/wait_time_csv_files/wait_time_data_{}.csv'.format(date_str),
+    s3.upload_file('./data/wait_time_csv_files/wait_time_data_{}.csv'.format(date_str),
                    'wait_time_data/' + file_name)
     return wait_time_list
 

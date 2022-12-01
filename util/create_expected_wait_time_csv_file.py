@@ -46,10 +46,10 @@ def create_expected_wait_time_csv_file(year: int, month: int, day: int) -> List[
             else:
                 expected_wait_time_list[i][j] //= collecting_data_num[i][j]
     write_list = copy.deepcopy(expected_wait_time_list)
-    with open('../data/expect_wait_time_data/expected_wait_time_data_' + base_day.strftime('%Y%m%d') + '.csv', 'w') as file:
+    with open('./data/expect_wait_time_data/expected_wait_time_data_' + base_day.strftime('%Y%m%d') + '.csv', 'w') as file:
         writer = csv.writer(file, lineterminator='\n')
         writer.writerows(write_list)
-    s3.upload_file('../data/expect_wait_time_data/expected_wait_time_data_{}.csv'.format(base_day.strftime('%Y%m%d')),
+    s3.upload_file('./data/expect_wait_time_data/expected_wait_time_data_{}.csv'.format(base_day.strftime('%Y%m%d')),
                    'expected_wait_time_data/expected_wait_time_data_{}.csv'.format(base_day.strftime('%Y%m%d')))
     return expected_wait_time_list
 
