@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import TimeVisitingAllAttractions
+from .models import WadaAlgorithm
 
 
-class TimeVisitingAllAttractionsAdmin(admin.ModelAdmin):
+class WadaAlgorithmAdmin(admin.ModelAdmin):
     list_display = ('date', 'time', 'route', 'is_visit_all_attractions')
     
-admin.site.register(TimeVisitingAllAttractions, TimeVisitingAllAttractionsAdmin)
+admin.site.register(WadaAlgorithm, WadaAlgorithmAdmin)

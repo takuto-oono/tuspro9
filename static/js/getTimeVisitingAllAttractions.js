@@ -1,6 +1,7 @@
-async function getTimeVisitingAllAttractions(index) {
+async function getTimeVisitingAllAttractions(index, model_id) {
 	const queryParam = new URLSearchParams({
-		index: index,
+		'index': index,
+		'model_id': model_id,
 	});
 	const resJson = await fetch(
 		getTimeVisitingAllAttractionsUrl + "?" + queryParam
@@ -12,13 +13,13 @@ async function getTimeVisitingAllAttractions(index) {
 		document.getElementById("route-date-" + index.toString()).innerHTML =
 			res.date;
 		if (res.is_visit_all_attractions) {
-			document.getElementById("is-visit-all-" + index.toString()).innerHTML =
+			document.getElementById("is-visit-all-" + index.toString() + "-" + model_id.toString()).innerHTML =
 				"可";
 		} else {
-			document.getElementById("is-visit-all-" + index.toString()).innerHTML =
+			document.getElementById("is-visit-all-" + index.toString() + "-" + model_id.toString()).innerHTML =
 				"不可";
 		}
-		document.getElementById("time-visit-all-" + index.toString()).innerHTML =
+		document.getElementById("time-visit-all-" + index.toString() + "-" + model_id.toString()).innerHTML =
 			res.time;
 		const attractionNameArray = exchangeAttractionNameToNum(res.route);
 		const table = document.getElementById("route-" + index);
