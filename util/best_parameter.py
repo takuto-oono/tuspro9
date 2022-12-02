@@ -11,6 +11,8 @@ def find_best_parameter_alg_wada(date: datetime.date) -> Tuple[float, float]:
     error_list = []
     for c1 in c1_list:
         for c2 in c2_list:
+            if c1 + c2 > 1:
+                continue
             (_, time) = alg_wada_main.alg_main(date=date, m=16, c1=c1, c2=c2)
             if time < min_time:
                 best_c1, best_c2 = c1, c2

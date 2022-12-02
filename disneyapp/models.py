@@ -3,7 +3,7 @@ from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
 
-class TimeVisitingAllAttractions(models.Model):
+class WadaAlgorithm(models.Model):
     is_visit_all_attractions = models.BooleanField(default=False)
     time = models.IntegerField(default=-1)
     date = models.DateField()
@@ -12,3 +12,20 @@ class TimeVisitingAllAttractions(models.Model):
     def __str__(self):
         return str(self.date)
 
+class MasahiroAlgorithm(models.Model):
+    is_visit_all_attractions = models.BooleanField(default=False)
+    time = models.IntegerField(default=-1)
+    date = models.DateField()
+    route = ArrayField(models.IntegerField())
+    
+    def __str__(self):
+        return str(self.date)
+
+class YudaiAlgorithm(models.Model):
+    is_visit_all_attractions = models.BooleanField(default=False)
+    time = models.IntegerField(default=-1)
+    date = models.DateField()
+    route = ArrayField(models.IntegerField())
+    
+    def __str__(self):
+        return str(self.date)
