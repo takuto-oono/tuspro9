@@ -27,7 +27,7 @@ def get_time_visiting_all_attractions(request: HttpRequest) -> JsonResponse:
             'route': object.route,
         })
     except TimeVisitingAllAttractions.DoesNotExist:
-        route, time = alg_main(date)
+        route, time = alg_main(date, 16, 0.2, 0.3)
         TimeVisitingAllAttractions.objects.create(
             date=date,
             time=time,

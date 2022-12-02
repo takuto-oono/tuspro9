@@ -9,17 +9,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
 
-def shape_dist(source: str) -> list[list[int]]:
-    dist = []
-    with open(source, 'r') as f:
-        dist = f.read().split('\n')
-    dist = [x.split(',') for x in dist][:-1]
-    dist = [[int(x) for x in l] for l in dist]
-    return dist
-
-
-def alg_main(date: datetime.date) -> Tuple[List[int], int]:
-    ipso = IPSO(16, 0.2, 0.3, display_flg=True)
+def alg_main(date: datetime.date, m: int, c1: float, c2: float) -> Tuple[List[int], int]:
+    ipso = IPSO(m, c1, c2, display_flg=True)
     expected_wait_time_data = []
     try:
         expected_wait_time_data = s3.get_csv_file(
