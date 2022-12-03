@@ -5,6 +5,7 @@ from django.views.decorators.http import require_GET
 from .models import WadaAlgorithm, MasahiroAlgorithm, YudaiAlgorithm
 import datetime
 from algorithm import alg_main
+from django.db import connection
 
 
 def index(request):
@@ -22,8 +23,24 @@ def get_time_visiting_all_attractions(request: HttpRequest) -> JsonResponse:
     if not index:
         raise Http404
     date = datetime.date.today() + datetime.timedelta(days=int(index))
+    test = WadaAlgorithm
     try:
-        object = model.objects.get(date=date)
+        # object = model.objects.get(date=date)
+        object = 0
+        if model_id == '0':
+            object = model.objects.raw(
+                'SELECT * FROM disneyapp_wadaalgorithm WHERE date=%s', [str(date)])[0]
+        elif model_id == '1':
+            object = model.objects.raw(
+                'SELECT * FROM disneyapp_yudaialgorithm WHERE date=%s', [str(date)])[0]
+        else:
+            object = model.objects.raw(
+                'SELECT * FROM disneyapp_masahiroalgorithm WHERE date=%s', [str(date)])[0]
+
+        # with connection.cursor() as cursor:
+        #     cursor.execute('SELECT * FROM WadaAlgorithm WHERE time=%s', ['477'])
+        #     data = cursor.fetchall()
+
         return JsonResponse({
             'status': 200,
             'time': object.time,
@@ -33,14 +50,10 @@ def get_time_visiting_all_attractions(request: HttpRequest) -> JsonResponse:
         })
     except model.DoesNotExist:
         route, time = [], -1
-        print(model_id)
         if model_id == '0':
             route, time = alg_main.alg_main_wada(date, 16, 0.2, 0.3)
         elif model_id == '1':
-            print('in view yudai')
             route, time = alg_main.alg_main_yudai(date)
-            print(route, time)
-            print('---------------------------------')
         elif model_id == '2':
             pass
         model.objects.create(
