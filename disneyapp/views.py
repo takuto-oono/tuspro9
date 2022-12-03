@@ -4,7 +4,7 @@ from django.http import HttpRequest, JsonResponse, Http404
 from django.views.decorators.http import require_GET
 from .models import WadaAlgorithm, MasahiroAlgorithm, YudaiAlgorithm
 import datetime
-from algorithm.alg_wada_main import alg_main
+from algorithm import alg_main
 
 
 def index(request):
@@ -14,13 +14,11 @@ def index(request):
 @require_GET
 def get_time_visiting_all_attractions(request: HttpRequest) -> JsonResponse:
     index = request.GET.get('index')
-    model_list = [WadaAlgorithm, MasahiroAlgorithm, YudaiAlgorithm]
+    model_list = [WadaAlgorithm, YudaiAlgorithm, MasahiroAlgorithm]
     model_id = request.GET.get('model_id')
     if not model_id:
         raise Http404
-    print(model_id)
     model = model_list[int(model_id)]
-    print(model)
     if not index:
         raise Http404
     date = datetime.date.today() + datetime.timedelta(days=int(index))
@@ -34,7 +32,17 @@ def get_time_visiting_all_attractions(request: HttpRequest) -> JsonResponse:
             'route': object.route,
         })
     except model.DoesNotExist:
-        route, time = alg_main(date, 16, 0.2, 0.3)
+        route, time = [], -1
+        print(model_id)
+        if model_id == '0':
+            route, time = alg_main.alg_main_wada(date, 16, 0.2, 0.3)
+        elif model_id == '1':
+            print('in view yudai')
+            route, time = alg_main.alg_main_yudai(date)
+            print(route, time)
+            print('---------------------------------')
+        elif model_id == '2':
+            pass
         model.objects.create(
             date=date,
             time=time,
