@@ -1,4 +1,4 @@
-from algorithm import alg_wada_main
+from algorithm import alg_main
 import datetime
 from typing import Tuple
 
@@ -13,7 +13,7 @@ def find_best_parameter_alg_wada(date: datetime.date) -> Tuple[float, float]:
         for c2 in c2_list:
             if c1 + c2 > 1:
                 continue
-            (_, time) = alg_wada_main.alg_main(date=date, m=16, c1=c1, c2=c2)
+            (_, time) = alg_main.alg_main_wada(date=date, m=16, c1=c1, c2=c2)
             if time < min_time:
                 best_c1, best_c2 = c1, c2
                 min_time = time
