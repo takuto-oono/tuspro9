@@ -6,7 +6,7 @@ from django.contrib.postgres.fields import ArrayField
 class WadaAlgorithm(models.Model):
     is_visit_all_attractions = models.BooleanField(default=False)
     time = models.IntegerField(default=-1)
-    date = models.DateField()
+    date = models.DateField(unique=True)
     route = ArrayField(models.IntegerField())
     
     def __str__(self):
@@ -15,7 +15,7 @@ class WadaAlgorithm(models.Model):
 class MasahiroAlgorithm(models.Model):
     is_visit_all_attractions = models.BooleanField(default=False)
     time = models.IntegerField(default=-1)
-    date = models.DateField()
+    date = models.DateField(unique=True)
     route = ArrayField(models.IntegerField())
     
     def __str__(self):
@@ -24,7 +24,7 @@ class MasahiroAlgorithm(models.Model):
 class YudaiAlgorithm(models.Model):
     is_visit_all_attractions = models.BooleanField(default=False)
     time = models.IntegerField(default=-1)
-    date = models.DateField()
+    date = models.DateField(unique=True)
     route = ArrayField(models.IntegerField())
     
     def __str__(self):
