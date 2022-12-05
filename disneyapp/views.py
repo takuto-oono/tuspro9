@@ -64,7 +64,7 @@ def get_time_visiting_all_attractions(request: HttpRequest) -> JsonResponse:
                 'expected_wait_time_data/expected_wait_time_data_{}.csv'.format(date.strftime('%Y%m%d')))
             route, time = [], 0
             if model_id == '0':
-                route, time = alg_main.alg_main_wada(attractions_distances, expected_wait_time_data,16, 0.2, 0.3)
+                route, time = alg_main.alg_main_wada(attractions_distances, expected_wait_time_data,16, 0.2, 0.3, 15)
                 WadaAlgorithm.objects.create(
                     date=date,
                     time=time,
