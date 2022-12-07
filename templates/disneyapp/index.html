@@ -3,17 +3,20 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Title</title>
+		<title>tuspro9</title>
 		<link rel="stylesheet" href="{% static 'css/index.css' %}" />
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script>
 			const getTimeVisitingAllAttractionsUrl = "{% url 'get_time_visiting_all_attractions' %}"
 		</script>
 	</head>
-	<body>
-        <h1>disney</h1>
-		<div class="test">
-			<table id="7-days-expecting" class="border-black border-solid border-2 m-4">
+	<body class="m-auto">
+        <div class="header relative">
+			<img src="{% static "image/disney_top.jpg" %}">
+			<p class="absolute inset-16 text-white text-5xl">東京ディズニーランド</p>
+		</div>
+		<div class="content">
+			<table id="7-days-expecting-0" class="border-black border-solid border-2 my-32">
 				<tr class="date border-black border-solid border-2">
 					<th id="date-label" class="border-black border-solid border-2">
 						<p class="p-1">日付</p>
@@ -123,7 +126,7 @@
 				</tr>
 			</table>
 
-			<table id="7-days-expecting" class="border-black border-solid border-2 m-4">
+			<table id="7-days-expecting-1" class="border-black border-solid border-2 my-32">
 				<tr class="date border-black border-solid border-2">
 					<th id="date-label" class="border-black border-solid border-2">
 						<p class="p-1">日付</p>
@@ -234,7 +237,7 @@
 				</tr>
 			</table>
 
-			<table id="7-days-expecting" class="border-black border-solid border-2 m-4">
+			<table id="7-days-expecting-2" class="border-black border-solid border-2 my-32">
 				<tr class="date border-black border-solid border-2">
 					<th id="date-label" class="border-black border-solid border-2">
 						<p class="p-1">日付</p>
@@ -343,164 +346,164 @@
 					</td>
 				</tr>
 			</table>
-
-
-			<p id="route-date-0-0" class="hidden"></p>
-			<table id="route-0-0" class="hidden">
+			<div class="route m-auto text-center">
+			<p id="route-date-0-0" class="hidden my-2"></p>
+			<table id="route-0-0" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10"><p>順番</p></th>
+					<th id="attraction-name" class="text-left"><p>アトラクション名</p></th>
 				</tr>
 			</table>
 			<p id="route-date-1-0" class="hidden"></p>
-			<table id="route-1-0" class="hidden">
+			<table id="route-1-0" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-2-0" class="hidden"></p>
-			<table id="route-2-0" class="hidden">
+			<table id="route-2-0" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-3-0" class="hidden"></p>
-			<table id="route-3-0" class="hidden">
+			<table id="route-3-0" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-4-0" class="hidden"></p>
-			<table id="route-4-0" class="hidden">
+			<table id="route-4-0" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-5-0" class="hidden"></p>
-			<table id="route-5-0" class="hidden">
+			<table id="route-5-0" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-6-0" class="hidden"></p>
-			<table id="route-6-0" class="hidden">
+			<table id="route-6-0" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			
 			
 			<p id="route-date-0-1" class="hidden"></p>
-			<table id="route-0-1" class="hidden">
-				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+			<table id="route-0-1" class="hidden mx-auto">
+				<tr class="">
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-1-1" class="hidden"></p>
-			<table id="route-1-1" class="hidden">
+			<table id="route-1-1" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-2-1" class="hidden"></p>
-			<table id="route-2-1" class="hidden">
+			<table id="route-2-1" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-3-1" class="hidden"></p>
-			<table id="route-3-1" class="hidden">
+			<table id="route-3-1" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-4-1" class="hidden"></p>
-			<table id="route-4-1" class="hidden">
+			<table id="route-4-1" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-5-1" class="hidden"></p>
-			<table id="route-5-1" class="hidden">
+			<table id="route-5-1" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-6-1" class="hidden"></p>
-			<table id="route-6-1" class="hidden">
+			<table id="route-6-1" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			
 			
 			<p id="route-date-0-2" class="hidden"></p>
-			<table id="route-0-2" class="hidden">
+			<table id="route-0-2" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-1-2" class="hidden"></p>
-			<table id="route-1-2" class="hidden">
+			<table id="route-1-2" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-2-2" class="hidden"></p>
-			<table id="route-2-2" class="hidden">
+			<table id="route-2-2" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-3-2" class="hidden"></p>
-			<table id="route-3-2" class="hidden">
+			<table id="route-3-2" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-4-2" class="hidden"></p>
-			<table id="route-4-2" class="hidden">
+			<table id="route-4-2" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-5-2" class="hidden"></p>
-			<table id="route-5-2" class="hidden">
+			<table id="route-5-2" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
 			<p id="route-date-6-2" class="hidden"></p>
-			<table id="route-6-2" class="hidden">
+			<table id="route-6-2" class="hidden mx-auto">
 				<tr>
-					<th id="attraction-num">順番</th>
-					<th id="attraction-name">アトラクション名</th>
+					<th id="attraction-num" class="px-10">順番</th>
+					<th id="attraction-name" class="text-left">アトラクション名</th>
 				</tr>
 			</table>
+			</div>
 		</div>
 	</body>
+	<script src="{% static "js/judgeIsSunday.js" %}" type="text/javascript"></script>
 	<script src="{% static "js/exchangeAttractionNameToNum.js" %}" type="text/javascript"></script>
 	<script src="{% static "js/getTimeVisitingAllAttractions.js" %}" type="text/javascript"></script>
 	<script src="{% static "js/onClickDate.js" %}" type="text/javascript"></script>
 	<script src="{% static "js/onloadEvent.js" %}" type="text/javascript"></script>
-
 </html>

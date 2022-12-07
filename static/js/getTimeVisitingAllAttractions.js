@@ -1,3 +1,11 @@
+function delete0MonthAndDay(string) {
+	if (string[0] == '0') {
+		return string[1]
+	}
+	return string
+}
+
+
 async function getTimeVisitingAllAttractions(model_id) {
 	const queryParam = new URLSearchParams({
 		model_id: model_id,
@@ -8,13 +16,26 @@ async function getTimeVisitingAllAttractions(model_id) {
 	const res = await resJson.json();
 
 	for (let index = 0; index < 7; index++) {
+		const dateArray = res[index]["date"].split("-");
+		const year = dateArray[0]
+		const month = delete0MonthAndDay(dateArray[1]);
+		const day = delete0MonthAndDay(dateArray[2]);
 		document.getElementById(
 			"date-" + index.toString() + "-" + model_id.toString()
-		).innerHTML = res[index]["date"];
+		).innerHTML = month + "/" + day;
 
 		document.getElementById(
 			"route-date-" + index.toString() + "-" + model_id.toString()
-		).innerHTML = res[index]["date"];
+		).innerHTML = month + "/" + day;
+		if (judgeIsSunday(year, month, day)) {
+			document.getElementById(
+				"date-" + index.toString() + "-" + model_id.toString()
+			).classList.add("bg-red-400")
+		} else {
+			document.getElementById(
+				"date-" + index.toString() + "-" + model_id.toString()
+			).classList.add("bg-blue-400")
+		}
 
 		if (res[index]["is_visit_all_attractions"]) {
 			document.getElementById(
@@ -44,6 +65,7 @@ async function getTimeVisitingAllAttractions(model_id) {
 			newTdIndex.appendChild(IndexP);
 
 			const newTdName = document.createElement("td");
+			newTdName.classList.add('text-left');
 			const NameP = document.createElement("p");
 			NameP.textContent = attractionName;
 			newTdName.appendChild(NameP);
