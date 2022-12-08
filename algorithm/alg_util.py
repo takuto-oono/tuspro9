@@ -5,7 +5,7 @@ from typing import Tuple
 
 
 # def wrapper_alg(fc, source_dist: str, source_wait: str, tspts_flg) -> Tuple[list[int], int]:
-def wrapper_alg(fc, dist: list[list[int]], wait: list[list[int]], tspts_flg) -> Tuple[list[int], int]:
+def wrapper_alg(fc, dist: list[list[int]], wait: list[list[int]], tspts_flg: bool, kishiki_flg: bool=False) -> Tuple[list[int], int]:
     # dist = shape_dist(source_dist)
     # wait = shape_wait(source_wait)
     wait = [[wait[i][j] for i in range(len(wait))] for j in range(len(wait[0]))]
