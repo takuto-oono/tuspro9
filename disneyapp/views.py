@@ -82,7 +82,8 @@ def get_time_visiting_all_attractions(request: HttpRequest) -> JsonResponse:
                 )
                 
             if model_id == '2':
-                #　アルゴリズム実行分を書く
+                route, time = alg_main.alg_main_masahiro(attractions_distances, expected_wait_time_data)
+                
                 MasahiroAlgorithm.objects.create(
                     date=date,
                     time=time,
