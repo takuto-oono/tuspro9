@@ -55,8 +55,10 @@ def wrapper_alg(fc, dist: list[list[int]], wait: list[list[int]], tspts_flg) -> 
     dist = [[(x+79) // 80 for x in l] for l in dist]
     entrance_dist = [(x+79) // 80 for x in entrance_dist]
 
-    # tspts_flgがTrueなら待ち時間を考慮する
-    if tspts_flg:
+    # kishiki_flgがTrueならwrapper_kishikiへ、tspts_flgがTrueなら待ち時間を考慮する
+    if kishiki_flg:
+        route, time = wrapper_kishiki(fc, dist, wait, entrance_dist)
+    elif tspts_flg:
         route, time = wrapper_tspts(fc, dist, wait, entrance_dist)
     else:
         route, time = wrapper_tsp(fc, dist, wait, entrance_dist)
@@ -64,6 +66,20 @@ def wrapper_alg(fc, dist: list[list[int]], wait: list[list[int]], tspts_flg) -> 
     # バックエンドに渡すために頂点番号を変更
     vertex_mapping_list = [in_list[i] for i in range(len(in_list))]
     route = [vertex_mapping_list[x] for x in route]
+
+    return (route, time)
+
+
+def wrapper_kishiki(fc, dist: list[list[int]], wait: list[list[int]], entrance_dist: list[int]) -> Tuple[list[int], int]:
+    n = len(wait)
+    wait_2 = [[] for _ in range(n)]
+    for i in range(n):
+        wait_2[i] = reduce(lambda accum, x: accum + [x for _ in range(15)], wait[i], [])
+
+    route, time = fc.fit(n, dist, wait_2, entrance_dist)
+
+    if time <= len(wait[0]):
+        assert len(route) == n, "全てのアトラクションを回ることができてない"
 
     return (route, time)
 
@@ -104,7 +120,6 @@ def wrapper_tspts(fc, dist: list[list[int]], wait: list[list[int]], entrance_dis
         else:
             now_time += entrance_dist[route[i]]
 
-    print(route, time)
     # print_timetable(route, dist, new_wait_2, entrance_dist)
 
     # 閉園時間を過ぎていたらメッセージ
@@ -173,7 +188,6 @@ def wrapper_tsp(fc, dist: list[list[int]], wait: list[list[int]], entrance_dist:
             mi_route = rev_route[s:] + rev_route[:s]
             mi_time = rev_time
 
-    print(mi_route, mi_time)
     # print_timetable(mi_route, dist, new_wait_2, entrance_dist)
 
     # 閉園時間を過ぎていたらメッセージ
