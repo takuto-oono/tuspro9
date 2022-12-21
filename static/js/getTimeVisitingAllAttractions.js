@@ -46,10 +46,16 @@ async function getTimeVisitingAllAttractions(model_id) {
 				"is-visit-all-" + index.toString() + "-" + model_id.toString()
 			).innerHTML = "✗";
 		}
-		document.getElementById(
-			"time-visit-all-" + index.toString() + "-" + model_id.toString()
-		).innerHTML = res[index]["time"];
-
+		if (res[index]["time"] == 10000000) {
+			document.getElementById(
+				"time-visit-all-" + index.toString() + "-" + model_id.toString()
+			).innerHTML = "周れません";
+			
+		} else {
+			document.getElementById(
+				"time-visit-all-" + index.toString() + "-" + model_id.toString()
+			).innerHTML = res[index]["time"];
+		}
 		const attractionNameArray = exchangeAttractionNameToNum(
 			res[index]["route"]
 		);
